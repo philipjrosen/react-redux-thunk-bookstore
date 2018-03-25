@@ -1,25 +1,26 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import configureStore from "../store/configureStore";
 import Home from "./common/HomePage";
 import About from "./common/AboutPage";
 import Book from "./book/BookPage";
 import Header from "./common/Header";
 
-const books = [
-  { title: "War and Peace", author: "Tolstoi" },
-  { title: "The Magic Mountain", author: "Thomas Mann" }
-];
+const store = configureStore();
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div className="container">
-        <Header />
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/books" render={() => <Book books={books} />} />
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="container">
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/books" component={Book} />
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 };
 
