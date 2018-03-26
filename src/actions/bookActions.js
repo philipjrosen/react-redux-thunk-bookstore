@@ -1,6 +1,7 @@
 import Axios from "axios";
 // API URL
-const apiUrl = "http://57c62fdcc1fc8711008f2a7e.mockapi.io/api/book";
+const apiUrl = "https://5ab7f2473ddb860014f13f0a.mockapi.io/api/books";
+
 // Sync Action
 export const fetchBooksSuccess = books => {
   return {
