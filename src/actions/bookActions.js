@@ -9,6 +9,14 @@ export const fetchBooksSuccess = books => {
     books
   };
 };
+
+export const createBookSuccess = book => {
+  return {
+    type: "CREATE_BOOK_SUCCESS",
+    book
+  };
+};
+
 //Async Action
 export const fetchBooks = () => {
   // Returns a dispatcher function
@@ -20,6 +28,20 @@ export const fetchBooks = () => {
         // Dispatch another action
         // to consume data
         dispatch(fetchBooksSuccess(response.data));
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
+
+export const createBook = book => {
+  return dispatch => {
+    return Axios.post(apiUrl, book)
+      .then(response => {
+        // Dispatch a synchronous action
+        // to handle data
+        dispatch(createBookSuccess(response.data));
       })
       .catch(error => {
         throw error;
