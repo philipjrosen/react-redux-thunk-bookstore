@@ -18,15 +18,19 @@ class BookDetailsPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+// Map state to props
+const mapStateToProps = (state, ownProps) => {
   return {
-    // state mappings here
+    book: state.book
   };
 };
-
+// Map dispatch to props
 const mapDispatchToProps = dispatch => {
   return {
-    // actions mappings here
+    // This dispatch will trigger
+    // the Ajax request we setup
+    // in our actions
+    fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId))
   };
 };
 
